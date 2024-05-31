@@ -197,7 +197,7 @@ const RegisterScreen = ({ navigation }) => {
     return (
       <ScrollView>
         <Spinner visible={loading} />
-        <Text> You already had registered before. </Text>
+        <Text style={styles.text}> You already registered. Please "Go Back" and login.</Text>
       </ScrollView>
     );
   };

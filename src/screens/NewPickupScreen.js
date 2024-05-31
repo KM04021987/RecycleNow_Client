@@ -468,7 +468,7 @@ const NewPickupScreen = ({ navigation }) => {
     return (
       <ScrollView>
         <Spinner visible={loading} />
-        <Text style={styles.text}>To view the submitted pickup request, 'Go Back' to the Home screen and touch on 'Pickup History'.</Text>
+        <Text style={styles.text}>To view the submitted pickup request, 'Go Back' to the Home screen and check 'Pickup History'.</Text>
       </ScrollView>
     );
   };

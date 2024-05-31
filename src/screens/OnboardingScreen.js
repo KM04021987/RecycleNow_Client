@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, Image, Dimensions, TouchableOpacity, StyleSheet } from 'react-native';
 
 import Onboarding from 'react-native-onboarding-swiper';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const width = Dimensions.get("window").width;
 
@@ -51,6 +52,8 @@ const Done = ({ ...props }) => (
 
 const OnboardingScreen = ({ navigation }) => {
   //console.log('OnboardingScreen')
+  AsyncStorage.setItem('registersuccess', JSON.stringify(0))
+  AsyncStorage.setItem('pickupsuccess', JSON.stringify(0))
   return (
     <Onboarding
       SkipButtonComponent={Skip}
