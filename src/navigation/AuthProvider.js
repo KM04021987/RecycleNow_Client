@@ -2,8 +2,8 @@ import axios from 'axios';
 import React, { createContext, useEffect, useState } from 'react';
 import { Alert } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-//const BASE_URL = 'http://10.0.2.2:8080';
-const BASE_URL = 'https://recyclenow-server.onrender.com';
+const BASE_URL = 'http://10.0.2.2:8080';
+//const BASE_URL = 'https://recyclenow-server.onrender.com';
 
 export const AuthContext = createContext();
 
@@ -127,10 +127,16 @@ export const AuthProvider = ({ children }) => {
   const newpickup = (plasticbottles, plasticwrapper, glassbottles, metalcans, paperbox, otherthermocolplasticwaste, country, state, city, address, ziporpin, phone) => {
     setLoading(true);
     let account = user.user.ACCOUNT;
+    let saveduser = user.user;
+    let savedtoken = user.token;
+    let savedusertype = user.usertype;
 
     axios
       .post(`${BASE_URL}/newpickup`, {
         account,
+        saveduser,
+        savedtoken,
+        savedusertype,
         plasticbottles,
         plasticwrapper,
         glassbottles,
@@ -145,6 +151,9 @@ export const AuthProvider = ({ children }) => {
         phone
       })
       .then(res => {
+        let user = res.data;
+        setUser(user);
+        AsyncStorage.setItem('user', JSON.stringify(user));
         //Alert.alert(`A new pickup request is successfully entered`);
         Alert.alert('Successful!', 'Pickup request is successfully entered', [
           {
