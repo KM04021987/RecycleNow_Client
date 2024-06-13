@@ -425,7 +425,7 @@ const NewPickupScreen = ({ navigation }) => {
               style={styles.input}
               value={address}
               placeholder="Enter address"
-              placeholderTextColor="black"
+              //placeholderTextColor="black"
               maxLength={100}
               onChangeText={text => setAddress(text)}
             />
@@ -434,7 +434,7 @@ const NewPickupScreen = ({ navigation }) => {
               style={styles.input}
               value={ziporpin}
               placeholder="Enter zip/pin"
-              placeholderTextColor="black"
+              //placeholderTextColor="black"
               keyboardType="number-pad"
               maxLength={10}
               onChangeText={text => setZiporpin(text)}
@@ -448,7 +448,7 @@ const NewPickupScreen = ({ navigation }) => {
               style={styles.input}
               value={phone}
               placeholder="Enter 10 digit phone number"
-              placeholderTextColor="black"
+              //placeholderTextColor="black"
               keyboardType="phone-pad"
               maxLength={10}
               onChangeText={text => setPhone(text)}
@@ -487,7 +487,7 @@ const styles = StyleSheet.create({
   input: {
     marginBottom: 12,
     borderWidth: 1,
-    borderColor: 'gray',
+    borderColor: '#c2c0c0',
     fontSize: 16,
     borderRadius: 8,
     paddingHorizontal: 14,

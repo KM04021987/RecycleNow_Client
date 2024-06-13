@@ -8,6 +8,7 @@ import HomeScreen from '../screens/HomeScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import NewPickupScreen from '../screens/NewPickupScreen';
 import ViewPickupScreen from '../screens/ViewPickupScreen';
+import PickupDetailsScreen from '../screens/PickupDetailsScreen';
 import EditProfileScreen from '../screens/EditProfileScreen';
 
 const Stack = createStackNavigator();
@@ -41,6 +42,22 @@ const HomeStack = ({ navigation }) => (
       component={ViewPickupScreen}
       options={{
         headerTitle: 'Pickup History',
+        headerBackTitleVisible: false,
+        headerTitleAlign: 'center',
+        headerStyle: {
+          backgroundColor: '#fff',
+          shadowColor: '#fff',
+          elevation: 0,
+        },
+        headerTitleStyle: { color: '#051d5f' },
+        headerTintColor: 'blue'
+      }}
+    />
+    <Stack.Screen
+      name="PickupDetails"
+      component={PickupDetailsScreen}
+      options={{
+        headerTitle: 'Pickup Details',
         headerBackTitleVisible: false,
         headerTitleAlign: 'center',
         headerStyle: {
