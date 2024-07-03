@@ -13,6 +13,7 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const [splashLoading, setSplashLoading] = useState(false);
   const [pickupsuccess, setPickupsuccess] = useState(0);
+  const [pickupupdatesuccess, setPickupUpdatesuccess] = useState(0);
   const [registersuccess, setRegistersuccess] = useState(0);
 
   //const register = (fullname, phone, password, confirmpassword, usertype) => {
@@ -179,13 +180,69 @@ export const AuthProvider = ({ children }) => {
       });
   };
 
+  const updatepickup = (plasticbottles, plasticwrapper, glassbottles, metalcans, paperbox, otherthermocolplasticwaste, country, state, city, address, ziporpin, phone, pickuprequestno) => {
+    setLoading(true);
+    let account = user.user.ACCOUNT;
+    let saveduser = user.user;
+    let savedtoken = user.token;
+    let savedusertype = user.usertype;
+
+    axios
+      .post(`${BASE_URL}/updatepickup`, {
+        account,
+        saveduser,
+        savedtoken,
+        savedusertype,
+        plasticbottles,
+        plasticwrapper,
+        glassbottles,
+        metalcans,
+        paperbox,
+        otherthermocolplasticwaste,
+        country,
+        state,
+        city,
+        address,
+        ziporpin,
+        phone,
+        pickuprequestno
+      })
+      .then(res => {
+        let user = res.data;
+        setUser(user);
+        AsyncStorage.setItem('user', JSON.stringify(user));
+        Alert.alert('Successful!', 'Pickup request is successfully updated', [
+          {
+            text: 'Cancel',
+            onPress: () => console.log('Cancel Pressed'),
+            style: 'cancel',
+          },
+          {
+            text: 'OK', onPress: async () => {
+              try {
+                await AsyncStorage.setItem('pickupupdatesuccess', JSON.stringify(1));
+              } catch (error) {
+                console.log(error)
+              }
+              setSplashLoading(true);
+              setSplashLoading(false);
+            }
+          },]);
+        setLoading(false);
+      })
+      .catch(e => {
+        console.log(`Error on register ${e.message}`);
+      });
+  };
+
+
   useEffect(() => {
     isLoggedIn();
   }, []);
 
   return (
     <AuthContext.Provider
-      value={{ login, register, logout, loading, user, usertype, splashLoading, newpickup, pickupsuccess }}>
+      value={{ login, register, logout, loading, user, usertype, splashLoading, newpickup, updatepickup, pickupsuccess, pickupupdatesuccess }}>
       {children}
     </AuthContext.Provider>
   );

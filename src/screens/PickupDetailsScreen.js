@@ -8,10 +8,13 @@ import {
   View
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { useRoute } from '@react-navigation/native';
 
 
-const PickupDetailsScreen = (route, navigation) => {
+const PickupDetailsScreen = ({ navigation }) => {
   //console.log('PickupDetailsScreen')
+  const route = useRoute();
+  const pickuprecord = route.params.pickuparray
 
   return (
     <SafeAreaView>
@@ -19,40 +22,40 @@ const PickupDetailsScreen = (route, navigation) => {
         <View style={styles.container}>
           <Text style={styles.line1}>
             {
-              "Request No: " + route.route.params.pickuparray.PICKUP_REQUEST_NO + "\n"
+              "Request No: " + route.params.pickuparray.PICKUP_REQUEST_NO + "\n"
             }
           </Text>
           <Text style={styles.line2}>
             {
-              "Submitted on: " + route.route.params.pickuparray.ADD_TS.substring(0, 10) + "\n" +
-              "Submitted at: " + route.route.params.pickuparray.ADD_TS.substring(11, 19) + "\n"
+              "Submitted on: " + route.params.pickuparray.ADD_TS.substring(0, 10) + "\n" +
+              "Submitted at: " + route.params.pickuparray.ADD_TS.substring(11, 19) + "\n"
             }
           </Text>
           <Text style={styles.line2}>
             {
-              "Plastic bottles:  " + route.route.params.pickuparray.PLASTIC_BOTTLE + "\n" +
-              "Plastic wrapper:  " + route.route.params.pickuparray.PLASTIC_WRAPPER + "\n" +
-              "Glass bottle:  " + route.route.params.pickuparray.GLASS_BOTTLE + "\n" +
-              "Metal cans:  " + route.route.params.pickuparray.METAL_CANS + "\n" +
-              "Paper wastes:  " + route.route.params.pickuparray.PAPER_WASTE + "\n" +
-              "Other wastes:  " + route.route.params.pickuparray.OTHER_WASTE + "\n"
+              "Plastic bottles:  " + route.params.pickuparray.PLASTIC_BOTTLE + "\n" +
+              "Plastic wrapper:  " + route.params.pickuparray.PLASTIC_WRAPPER + "\n" +
+              "Glass bottle:  " + route.params.pickuparray.GLASS_BOTTLE + "\n" +
+              "Metal cans:  " + route.params.pickuparray.METAL_CANS + "\n" +
+              "Paper wastes:  " + route.params.pickuparray.PAPER_WASTE + "\n" +
+              "Other wastes:  " + route.params.pickuparray.OTHER_WASTE + "\n"
             }
           </Text>
           <Text style={styles.line2}>
             {
               "Pickup location:  " + "\n" +
-              route.route.params.pickuparray.DONOR_ADDRESS + "\n" +
-              route.route.params.pickuparray.DONOR_CITY + ", " + route.route.params.pickuparray.DONOR_STATE + ", " + route.route.params.pickuparray.DONOR_COUNTRY + "\n" +
-              route.route.params.pickuparray.DONOR_PIN_OR_ZIP + "\n"
+              route.params.pickuparray.DONOR_ADDRESS + "\n" +
+              route.params.pickuparray.DONOR_CITY + ", " + route.params.pickuparray.DONOR_STATE + ", " + route.params.pickuparray.DONOR_COUNTRY + "\n" +
+              route.params.pickuparray.DONOR_PIN_OR_ZIP + "\n"
             }
           </Text>
           <Text style={styles.line2}>
             {
-              "Contact number:  " + route.route.params.pickuparray.DONOR_PHONE_NO + "\n"
+              "Contact number:  " + route.params.pickuparray.DONOR_PHONE_NO + "\n"
             }
           </Text>
 
-          <TouchableOpacity onPress={() => { navigation.navigate('EditProfile') }}>
+          <TouchableOpacity onPress={() => { navigation.navigate('EditPickupDetails', { pickuprecord }) }}>
             <View style={styles.profileAction}>
               <Text style={styles.profileActionText}>Edit Pickup Details</Text>
               <Icon color="#fff" name="edit" size={16} />

@@ -9,6 +9,7 @@ import ProfileScreen from '../screens/ProfileScreen';
 import NewPickupScreen from '../screens/NewPickupScreen';
 import ViewPickupScreen from '../screens/ViewPickupScreen';
 import PickupDetailsScreen from '../screens/PickupDetailsScreen';
+import EditPickupDetailsScreen from '../screens/EditPickupDetailsScreen';
 import EditProfileScreen from '../screens/EditProfileScreen';
 
 const Stack = createStackNavigator();
@@ -68,6 +69,11 @@ const HomeStack = ({ navigation }) => (
         headerTitleStyle: { color: '#051d5f' },
         headerTintColor: 'blue'
       }}
+    />
+    <Stack.Screen
+      name="EditPickupDetails"
+      component={EditPickupDetailsScreen}
+      options={{ headerShown: false }}
     />
   </Stack.Navigator>
 );

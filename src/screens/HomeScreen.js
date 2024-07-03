@@ -17,11 +17,12 @@ const HomeScreen = ({ navigation }) => {
   const { logout, loading } = useContext(AuthContext);
   const { user } = useContext(AuthContext);
   const [pickupsuccess, setPickupsuccess] = useState();
+  const [pickupupdatesuccess, setPickupUpdatesuccess] = useState();
 
   return (
     <ScrollView>
       <Spinner visible={loading} />
-      <View style={{backgroundColor: '#ffffff', height: 55}}>
+      <View style={{ backgroundColor: '#ffffff', height: 55 }}>
         <Text style={styles.text}> Welcome, {user.user.FULLNAME}! </Text>
       </View>
       <TouchableOpacity
@@ -40,6 +41,11 @@ const HomeScreen = ({ navigation }) => {
       <TouchableOpacity
         style={styles.userBtn}
         onPress={() => {
+          AsyncStorage.getItem('pickupupdatesuccess').then((value) => {
+            if (value == 1) {
+              AsyncStorage.setItem('pickupupdatesuccess', JSON.stringify(0))
+            }
+          })
           navigation.navigate('ViewPickup');
         }}>
         <Text style={styles.userBtnTxt}>Pickup History</Text>

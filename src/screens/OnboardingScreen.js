@@ -54,6 +54,7 @@ const OnboardingScreen = ({ navigation }) => {
   //console.log('OnboardingScreen')
   AsyncStorage.setItem('registersuccess', JSON.stringify(0))
   AsyncStorage.setItem('pickupsuccess', JSON.stringify(0))
+  AsyncStorage.setItem('pickupupdatesuccess', JSON.stringify(0))
   return (
     <Onboarding
       SkipButtonComponent={Skip}
