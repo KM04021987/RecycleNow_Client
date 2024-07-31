@@ -19,39 +19,63 @@ const HomeScreen = ({ navigation }) => {
   const [pickupsuccess, setPickupsuccess] = useState();
   const [pickupupdatesuccess, setPickupUpdatesuccess] = useState();
 
-  return (
-    <ScrollView>
-      <Spinner visible={loading} />
-      <View style={{ backgroundColor: '#ffffff', height: 55 }}>
-        <Text style={styles.text}> Welcome, {user.user.FULLNAME}! </Text>
-      </View>
-      <TouchableOpacity
-        style={styles.userBtn}
-        onPress={() => {
-          AsyncStorage.getItem('pickupsuccess').then((value) => {
-            if (value == 1) {
-              AsyncStorage.setItem('pickupsuccess', JSON.stringify(0))
-            }
-          })
-          navigation.navigate('NewPickup');
-        }}>
-        <Text style={styles.userBtnTxt}>Create a New Pickup</Text>
-      </TouchableOpacity>
+  if (user.usertype == 'D') {
+    return (
+      <ScrollView>
+        <Spinner visible={loading} />
+        <View style={{ backgroundColor: '#ffffff', height: 55 }}>
+          <Text style={styles.text}> Welcome, {user.user.FULLNAME}! </Text>
+        </View>
+        <TouchableOpacity
+          style={styles.userBtn}
+          onPress={() => {
+            AsyncStorage.getItem('pickupsuccess').then((value) => {
+              if (value == 1) {
+                AsyncStorage.setItem('pickupsuccess', JSON.stringify(0))
+              }
+            })
+            navigation.navigate('NewPickup');
+          }}>
+          <Text style={styles.userBtnTxt}>Create a New Pickup</Text>
+        </TouchableOpacity>
 
-      <TouchableOpacity
-        style={styles.userBtn}
-        onPress={() => {
-          AsyncStorage.getItem('pickupupdatesuccess').then((value) => {
-            if (value == 1) {
-              AsyncStorage.setItem('pickupupdatesuccess', JSON.stringify(0))
-            }
-          })
-          navigation.navigate('ViewPickup');
-        }}>
-        <Text style={styles.userBtnTxt}>Pickup History</Text>
-      </TouchableOpacity>
-    </ScrollView>
-  );
+        <TouchableOpacity
+          style={styles.userBtn}
+          onPress={() => {
+            AsyncStorage.getItem('pickupupdatesuccess').then((value) => {
+              if (value == 1) {
+                AsyncStorage.setItem('pickupupdatesuccess', JSON.stringify(0))
+              }
+            })
+            navigation.navigate('ViewPickup');
+          }}>
+          <Text style={styles.userBtnTxt}>Pickup History</Text>
+        </TouchableOpacity>
+      </ScrollView>
+    )
+  }
+  else {
+    return (
+      <ScrollView>
+        <Spinner visible={loading} />
+        <View style={{ backgroundColor: '#ffffff', height: 55 }}>
+          <Text style={styles.text}> Welcome, {user.user.FULLNAME}! </Text>
+        </View>
+        <TouchableOpacity
+          style={styles.userBtn}
+          onPress={() => {
+            AsyncStorage.getItem('pickupsuccess').then((value) => {
+              if (value == 1) {
+                AsyncStorage.setItem('pickupsuccess', JSON.stringify(0))
+              }
+            })
+            navigation.navigate('ViewPickup');
+          }}>
+          <Text style={styles.userBtnTxt}>Pickup requests in my area</Text>
+        </TouchableOpacity>
+      </ScrollView>
+    );
+  };
 };
 
 export default HomeScreen;
