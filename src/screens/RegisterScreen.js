@@ -197,7 +197,7 @@ const RegisterScreen = ({ navigation }) => {
     return (
       <ScrollView>
         <Spinner visible={loading} />
-        <Text style={styles.text}> You already registered. Please "Go Back" and login.</Text>
+        <Text style={styles.text1}> You already registered. Please "Go Back" and login.</Text>
       </ScrollView>
     );
   };
@@ -217,6 +217,13 @@ const styles = StyleSheet.create({
     fontFamily: 'Kufam-SemiBoldItalic',
     fontSize: 24,
     marginBottom: 10,
+    color: 'black',
+  },
+  text1: {
+    fontFamily: 'Kufam-SemiBoldItalic',
+    fontSize: 16,
+    marginTop: 30,
+    marginLeft: 10,
     color: 'black',
   },
   navButton: {
